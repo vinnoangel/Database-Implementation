@@ -1,10 +1,8 @@
-Here's a concise documentation for the HealthyLife Hospitals Database Implementation Project:
-
-## HealthyLife Hospitals Database Implementation Project
+# HealthyLife Hospitals Database Implementation Project
 
 ### 1. Database Design
 
-The database consists of 7 tables:
+The database consists of 8 tables:
 
 - tblPatient: Stores patient information
 - tblAdmission: Records hospital admissions
@@ -15,11 +13,11 @@ The database consists of 7 tables:
 - tblGP: Contains GP details
 - tblGPPractice: Stores GP practice information
 
-Relationships are established using foreign keys as specified in the table structures[1].
+Relationships are established using foreign keys as specified in the table structures.
 
 ### 2. Data Insertion
 
-Sample data is populated into all tables, with at least 100 records for admissions, patients, and diagnoses to allow for meaningful analysis[1].
+Sample data is populated into all tables, with at least 100 records for admissions, patients, and diagnoses to allow for meaningful analysis.
 
 ### 3. T-SQL Queries
 
@@ -32,7 +30,7 @@ The project includes several T-SQL queries to extract valuable insights:
 5. Comprehensive Episode Analysis
 6. Additional Data Retrieval
 
-These queries cover various aspects of hospital operations, including patient admissions, diagnoses, ward utilization, and GP referrals[1].
+These queries cover various aspects of hospital operations, including patient admissions, diagnoses, ward utilization, and GP referrals.
 
 ### 4. Implementation Steps
 
@@ -66,4 +64,4 @@ These queries cover various aspects of hospital operations, including patient ad
 - Implementation of data visualization tools for easier interpretation of results
 - Expansion to include additional healthcare metrics and quality indicators
 
-This database implementation project provides HealthyLife Hospitals with a powerful tool for managing and analyzing patient admissions, diagnoses, and hospital operations. By leveraging the insights gained from this database, the hospital can make data-driven decisions to improve patient care and optimize resource utilization[1][2].
+This database implementation project provides HealthyLife Hospitals with a powerful tool for managing and analyzing patient admissions, diagnoses, and hospital operations. By leveraging the insights gained from this database, the hospital can make data-driven decisions to improve patient care and optimize resource utilization.
