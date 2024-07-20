@@ -1,1 +1,1 @@
-SELECT * FROM tblDiagnosis
+Hashimoto’s thyroiditis, Breast cancer, Obesity

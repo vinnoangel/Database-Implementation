@@ -3,8 +3,8 @@ INSERT INTO tblMethodOfAdmission (
     MethodOfAdmissionCode,  
     MethodOfAdmissionType
 ) VALUES
-    ('ICU', 'Intensive Care Unit'),
-    ('ER', 'Emergency Room'),
+    ('ELEC', 'Elective'),
+    ('EMER', 'Emergency'),
     ('IP', 'Inpatient'),
     ('OP', 'Outpatient'),
     ('SURG', 'Surgical'),
@@ -12,6 +12,6 @@ INSERT INTO tblMethodOfAdmission (
     ('PED', 'Pediatric'),
     ('PSY', 'Psychiatric'),
     ('REHAB', 'Rehabilitation'),
-    ('DS', 'Day Surgery'),
+    ('GP', 'General Practioner'),
     ('OBS', 'Observation'),
     ('LTC', 'Long-term Care');
