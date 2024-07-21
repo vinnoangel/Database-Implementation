@@ -1,14 +1,19 @@
 /* 
-Question: Retrieve the total number of admissions per patient. 
+Question: Retrieve the list of all patients who had more than one 
+    admission in the financial year 2015/16
 
-- Use CTE to calculate total number of times a patient were admitted.
+- To answer this question, we'll need 2 tables
+    1. tblAdmission
+    2. tblPatient
+- Use CTE to calculate total number of times a patient were admitted in the financial year 2015/16.
     Call the temporary result set countTotalPatientAdmission which returns 
     two columns: PatientID and TotalAdmission.
     - Group CTE result set by PatientID
 - Select all columns in tblPatient table and TotalAdmission in countTotalPatientAdmission result set 
     using INNER JOIN clause
 - Concatenat Forename and Surname
-- Format the date column using CASE 
+- Format the date column using CASE
+- Return only rows with TotalAdmission > 1 
 - Sort in ascending order using PatientID 
 */
 
@@ -19,12 +24,15 @@ WITH countTotalPatientAdmission AS (
         COUNT(AdmissionID) AS TotalAdmission  
     FROM 
         tblAdmission 
+    WHERE 
+        AdmissionDate 
+            BETWEEN '2015/04/01' AND '2016/03/31'
     GROUP BY 
         PatientID
 )
--- Main query that uses the above CTE (countTotalPatientAdmission)
+-- Main query
 SELECT 
-    p.PatientID AS 'ID', 
+    --p.PatientID AS 'ID', 
     Forename + ' ' + Surname AS Name, 
     Gender, 
     FORMAT(DateOfBirth, 'dd') + 
@@ -38,11 +46,13 @@ SELECT
     FORMAT(DateOfBirth, 'MMM, yyyy') AS 'Date of Birth',
     PostCode AS 'Post Code',
     TotalAdmission AS 'Admission Count'
-FROM 
-    tblPatient p 
-INNER JOIN 
+    FROM 
+        tblPatient p 
+    INNER JOIN 
         countTotalPatientAdmission tpa 
-ON 
-    p.PatientID = tpa.PatientID
-ORDER BY 
-    p.PatientID ASC;
+    ON 
+        p.PatientID = tpa.PatientID
+    WHERE 
+        TotalAdmission > 1
+    ORDER BY 
+        p.PatientID ASC;

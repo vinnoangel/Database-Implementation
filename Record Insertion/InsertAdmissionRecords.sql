@@ -1,4 +1,4 @@
-
+-- Insert 240 records into the tblAdmission table
 INSERT INTO tblAdmission (
     PatientID, 
     AdmissionDate, 

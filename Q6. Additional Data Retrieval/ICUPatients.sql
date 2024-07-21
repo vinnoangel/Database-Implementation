@@ -1,5 +1,30 @@
+/* 
+Question: Retrieve the list of all patients who were admitted 
+    to the ICU ward and their corresponding diagnoses.
 
-WITH ICUPatients AS (
+- To answer this question, we'll need 3 tables
+    1. tblAdmission
+    2. tblWard and
+    3. tblDiagnosis
+- Use CTE aggregate all diagnosis and concatenate them.
+    Call the temporary result set ICUPatientsDiagnosis which returns 
+    four columns: PatientID, AdmissionID, WardType and Diagnosis.
+    - Return only rows with method of admission as ICU
+    - Group result set using 
+        1. AdmissionID, 
+        2. PatientID, 
+        3. WardType
+- Select Forename, Surname, Gender, DateOfBirth and 
+    PostCode from tblPatient table and WardType, AdmissionID and 
+    Diagnosis from ICUPatientsDiagnosis result set 
+    using INNER JOIN clause
+- Concatenat Forename and Surname
+- Format the date column using CASE 
+- Group result by WardType
+- Sort in descending order using TotalAdmission 
+*/
+
+WITH ICUPatientsDiagnosis AS (
     SELECT 
         PatientID,
         STRING_AGG(DiagnosisDescription, ', ') AS Diagnosis,
@@ -21,13 +46,20 @@ WITH ICUPatients AS (
         a.AdmissionID, 
         PatientID, 
         WardType
-
 )
 
 SELECT
     Forename + ' ' + Surname AS 'Name', 
     Gender, 
-    DateOfBirth AS 'Date of Birth', 
+    FORMAT(DateOfBirth, 'dd') + 
+        CASE 
+            WHEN DATEPART(day, DateOfBirth) IN (1, 21, 31) THEN 'st'
+            WHEN DATEPART(day, DateOfBirth) IN (2, 22) THEN 'nd'
+            WHEN DATEPART(day, DateOfBirth) IN (3, 23) THEN 'rd'
+        ELSE 'th' 
+        END 
+        + ' ' +
+    FORMAT(DateOfBirth, 'MMM, yyyy') AS 'Date of Birth',
     PostCode AS 'Post Code',
     WardType AS 'Ward Type',
     AdmissionID,
@@ -35,8 +67,8 @@ SELECT
 FROM 
     tblPatient p 
 INNER JOIN 
-    ICUPatients icu 
+    ICUPatientsDiagnosis icud 
 ON 
-    p.PatientID = icu.PatientID
+    p.PatientID = icud.PatientID
 ORDER BY 
     p.PatientID ASC;

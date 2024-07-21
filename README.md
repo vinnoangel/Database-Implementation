@@ -2,16 +2,18 @@
 
 ### 1. Database Design
 
+Database Name: *HealthyLifeHospitals*
+
 The database consists of 8 tables:
 
-- tblPatient: Stores patient information
-- tblAdmission: Records hospital admissions
-- tblSpecialty: Lists medical specialties
-- tblWard: Contains ward information
-- tblMethodOfAdmission: Defines admission methods
-- tblDiagnosis: Stores diagnosis information
-- tblGP: Contains GP details
-- tblGPPractice: Stores GP practice information
+- *tblPatient*: Stores patient information
+- *tblAdmission*: Records hospital admissions
+- *tblSpecialty*: Lists medical specialties
+- *tblWard*: Contains ward information
+- *tblMethodOfAdmission*: Defines admission methods
+- *tblDiagnosis*: Stores diagnosis information
+- *tblGP*: Contains GP details
+- *tblGPPractice*: Stores GP practice information
 
 Relationships are established using foreign keys as specified in the table structures.
 

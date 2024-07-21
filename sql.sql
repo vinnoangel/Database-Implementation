@@ -1,1 +1,1 @@
-Hashimoto’s thyroiditis, Breast cancer, Obesity
+SELECT * FROM tblAdmission;
