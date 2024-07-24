@@ -150,4 +150,7 @@ INSERT INTO tblGPPractice (
 To run this project successfully, *Run the 2 scripts inside the setup folder. Run the CreateTables.sql first before running the insertion.sql*
 
 
+### 7. Data Visualization
+Some visualization were performed using excel. The excel file can be found in this repository. See screenshot below.
 
+![Data visualization](Data_Visualization.png)
