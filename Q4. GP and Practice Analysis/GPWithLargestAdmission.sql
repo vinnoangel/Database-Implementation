@@ -1,3 +1,7 @@
+/*
+    Author: Vincent Uche Ohiri
+*/
+
 /* 
 Question: For hospital admissions with an admission date in the 
     financial year 2015/16 (01/04/2015 to 31/03/2016), which GP Practice 
@@ -38,8 +42,7 @@ ON
     a.MethodOfAdmissionCode = ma.MethodOfAdmissionCode 
 WHERE 
     a.MethodOfAdmissionCode = 'GP' 
-    AND AdmissionDate 
-    BETWEEN '2015/04/01' AND '2016/03/31'
+    AND AdmissionDate BETWEEN '2015/04/01' AND '2016/03/31'
 GROUP BY 
     PracticeName, 
     a.MethodOfAdmissionCode 

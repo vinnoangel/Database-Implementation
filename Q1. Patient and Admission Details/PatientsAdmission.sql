@@ -1,3 +1,7 @@
+/*
+    Author: Vincent Uche Ohiri
+*/
+
 /* 
 Question: Retrieve the total number of admissions per patient. 
 

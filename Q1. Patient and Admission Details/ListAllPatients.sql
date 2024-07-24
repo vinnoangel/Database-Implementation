@@ -1,3 +1,7 @@
+/*
+    Author: Vincent Uche Ohiri
+*/
+
 /* 
 Question: List all patients with their details 
     (ID, Name, Gender, Date of Birth, Postcode)

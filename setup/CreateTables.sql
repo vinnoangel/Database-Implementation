@@ -1,26 +1,19 @@
---Delete later
-DECLARE @Sql NVARCHAR(500) DECLARE @Cursor CURSOR
+/*
+    Author: Vincent Uche Ohiri
+*/
 
-SET @Cursor = CURSOR FAST_FORWARD FOR
-SELECT DISTINCT sql = 'ALTER TABLE [' + tc2.TABLE_SCHEMA + '].[' +  tc2.TABLE_NAME + '] DROP [' + rc1.CONSTRAINT_NAME + '];'
-FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS rc1
-LEFT JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS tc2 ON tc2.CONSTRAINT_NAME =rc1.CONSTRAINT_NAME
-
-OPEN @Cursor FETCH NEXT FROM @Cursor INTO @Sql
-
-WHILE (@@FETCH_STATUS = 0)
-BEGIN
-Exec sp_executesql @Sql
-FETCH NEXT FROM @Cursor INTO @Sql
-END
-
-CLOSE @Cursor DEALLOCATE @Cursor
+----------- Create Database -----------------------------------------------------
+IF NOT EXISTS(SELECT * FROM sys.databases WHERE name = 'HealthyLifeStyle')
+    BEGIN
+        CREATE DATABASE HealthyLifeStyle;
+    END;
+    GO
+    
+USE HealthyLifeStyle;
 GO
 
-EXEC sp_MSforeachtable 'DROP TABLE ?'
-GO
---------------------------------------------------------------------------------------------
 
+---------   Start Tables creations  --------------------------------------------------
 CREATE TABLE tblPatient(
     PatientID  INT IDENTITY(1,1) PRIMARY KEY,
     Forename NVARCHAR(50) NOT NULL,
@@ -65,7 +58,11 @@ CREATE TABLE tblAdmission (
 
 CREATE TABLE tblDiagnosis (
     DiagnosisCode NVARCHAR(20) PRIMARY KEY,
-    DiagnosisDescription NVARCHAR(255) NOT NULL,
+    DiagnosisDescription NVARCHAR(255) NOT NULL
+)
+
+CREATE TABLE tblPatientDiagnosis (
+    DiagnosisCode NVARCHAR(20) FOREIGN KEY REFERENCES tblDiagnosis(DiagnosisCode),
     AdmissionID INT FOREIGN KEY REFERENCES tblAdmission(AdmissionID)
 )
 

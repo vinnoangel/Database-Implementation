@@ -1,11 +1,16 @@
+/*
+    Author: Vincent Uche Ohiri
+*/
+
 /* 
 Question: Retrieve the list of all patients who were admitted 
     to the ICU ward and their corresponding diagnoses.
 
-- To answer this question, we'll need 3 tables
+- To answer this question, we'll need 4 tables
     1. tblAdmission
-    2. tblWard and
-    3. tblDiagnosis
+    2. tblWard
+    3. tblDiagnosis and
+    4. tblPatientDiagnosis
 - Use CTE aggregate all diagnosis and concatenate them.
     Call the temporary result set ICUPatientsDiagnosis which returns 
     four columns: PatientID, AdmissionID, WardType and Diagnosis.
@@ -27,6 +32,7 @@ Question: Retrieve the list of all patients who were admitted
 WITH ICUPatientsDiagnosis AS (
     SELECT 
         PatientID,
+        -- this concatenate all descriptions
         STRING_AGG(DiagnosisDescription, ', ') AS Diagnosis,
         a.AdmissionID, 
         WardType
@@ -37,9 +43,13 @@ WITH ICUPatientsDiagnosis AS (
     ON 
         a.WardCode = w.WardCode 
     INNER JOIN 
+        tblPatientDiagnosis pd 
+    ON 
+        a.AdmissionID = pd.AdmissionID 
+    INNER JOIN 
         tblDiagnosis d 
     ON 
-        a.AdmissionID = d.AdmissionID 
+        pd.DiagnosisCode = d.DiagnosisCode 
     WHERE 
         WardType = 'ICU' 
     GROUP BY 

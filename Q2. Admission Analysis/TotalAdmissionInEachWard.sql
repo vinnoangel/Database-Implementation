@@ -1,3 +1,7 @@
+/*
+    Author: Vincent Uche Ohiri
+*/
+
 /* 
 Question: Retrieve the total number of admissions for each ward 
     in the financial year 2015/16
@@ -26,8 +30,7 @@ INNER JOIN
 ON 
     w.WardCode = a.WardCode 
 WHERE 
-    AdmissionDate 
-        BETWEEN '2015/04/01' AND '2016/03/31' 
+    AdmissionDate BETWEEN '2015/04/01' AND '2016/03/31' 
 GROUP BY 
     WardType
 ORDER BY 

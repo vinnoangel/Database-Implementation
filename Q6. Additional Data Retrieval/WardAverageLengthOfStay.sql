@@ -1,3 +1,7 @@
+/*
+    Author: Vincent Uche Ohiri
+*/
+
 /* 
 Question: Calculate the average length of stay for all 
     admissions in each ward for the financial year 2015/16.
@@ -24,10 +28,8 @@ WITH lengthOfStay AS (
     FROM 
         tblAdmission
     WHERE 
-        AdmissionDate 
-        BETWEEN '2015/04/01' AND '2016/03/31' 
-        AND DischargeDate 
-        BETWEEN '2015/04/01' AND '2016/03/31'
+        AdmissionDate BETWEEN '2015/04/01' AND '2016/03/31' 
+        AND DischargeDate BETWEEN '2015/04/01' AND '2016/03/31'
 )
 -- Main Query
 SELECT 

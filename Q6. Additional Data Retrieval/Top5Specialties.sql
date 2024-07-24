@@ -1,3 +1,7 @@
+/*
+    Author: Vincent Uche Ohiri
+*/
+
 /* 
 Question: List the top 5 specialties with the highest number of 
     admissions in the financial year 2015/16.
@@ -24,8 +28,7 @@ WITH countTotalSpecialtyAdmission AS (
     FROM 
         tblAdmission 
     WHERE 
-        AdmissionDate 
-            BETWEEN '2015/04/01' AND '2016/03/31'
+        AdmissionDate BETWEEN '2015/04/01' AND '2016/03/31'
     GROUP BY SpecialtyCode
 )
 

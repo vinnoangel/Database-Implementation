@@ -1,3 +1,7 @@
+/*
+    Author: Vincent Uche Ohiri
+*/
+
 /* 
 Question: Generate a list of hospital admission episodes where:
     1. The admission date (2nd episode) is within 7 days of a 

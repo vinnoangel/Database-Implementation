@@ -1,3 +1,7 @@
+/*
+    Author: Vincent Uche Ohiri
+*/
+
 /* 
 Question: Retrieve the list of all patients who had more than one 
     admission in the financial year 2015/16
@@ -8,12 +12,12 @@ Question: Retrieve the list of all patients who had more than one
 - Use CTE to calculate total number of times a patient were admitted in the financial year 2015/16.
     Call the temporary result set countTotalPatientAdmission which returns 
     two columns: PatientID and TotalAdmission.
-    - Group CTE result set by PatientID
+    - Group CTE result set by PatientID 
+    - Return only rows with COUNT(AdmissionID) > 1 using HAVING clause
 - Select all columns in tblPatient table and TotalAdmission in countTotalPatientAdmission result set 
     using INNER JOIN clause
 - Concatenat Forename and Surname
 - Format the date column using CASE
-- Return only rows with TotalAdmission > 1 
 - Sort in ascending order using PatientID 
 */
 
@@ -25,10 +29,11 @@ WITH countTotalPatientAdmission AS (
     FROM 
         tblAdmission 
     WHERE 
-        AdmissionDate 
-            BETWEEN '2015/04/01' AND '2016/03/31'
+        AdmissionDate BETWEEN '2015/04/01' AND '2016/03/31'
     GROUP BY 
         PatientID
+    HAVING 
+        COUNT(AdmissionID) > 1
 )
 -- Main query
 SELECT 
@@ -52,7 +57,5 @@ SELECT
         countTotalPatientAdmission tpa 
     ON 
         p.PatientID = tpa.PatientID
-    WHERE 
-        TotalAdmission > 1
     ORDER BY 
         p.PatientID ASC;

@@ -1,3 +1,7 @@
+/*
+    Author: Vincent Uche Ohiri
+*/
+
 /* 
 Question: For hospital admissions with a discharge date in the 
     financial year 2014/15 (01/04/2014 to 31/03/2015), 
@@ -40,8 +44,7 @@ ON
 WHERE 
     WardType = 'Endoscopy Suite' 
     AND MethodOfAdmissionType = 'Elective'
-    AND DischargeDate 
-        BETWEEN '2014/04/01' AND '2015/03/31'
+    AND DischargeDate BETWEEN '2014/04/01' AND '2015/03/31'
 GROUP BY 
     WardType, 
     MethodOfAdmissionType
